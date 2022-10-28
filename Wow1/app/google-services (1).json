@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "431380986358",
+    "project_id": "wow1-faccd",
+    "storage_bucket": "wow1-faccd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431380986358:android:7b6a0796b7ff6e4dfcafd7",
+        "android_client_info": {
+          "package_name": "com.example.wow1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431380986358-kvlclbe4fhcnsp8vnh8n1ef231en1lcn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wow1",
+            "certificate_hash": "6a557d44cfff3eb7bda8f777102451c8c08e9b1c"
+          }
+        },
+        {
+          "client_id": "431380986358-m45dt3g5m1j0ljsp5ug53krfrdhihh42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv7tDQlJ7M0pT-b9TZryod-e8zoKbv0XA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431380986358-m45dt3g5m1j0ljsp5ug53krfrdhihh42.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
