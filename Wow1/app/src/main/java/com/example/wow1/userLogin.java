@@ -5,6 +5,9 @@ public class userLogin {
     String email;
     String phone;
     String pass;
+    public userLogin(){
+
+    }
 
 
     public userLogin(String user, String email, String phone, String pass) {
@@ -12,6 +15,7 @@ public class userLogin {
         this.email = email;
         this.phone = phone;
         this.pass = pass;
+
 
     }
 
@@ -30,6 +34,14 @@ public class userLogin {
     public String getPass() {
         return pass;
     }
+
+    public void setUser(String user) {this.user = user;}
+
+    public void setEmail(String email) {this.email = email;}
+
+    public void setPhone(String phone) {this.phone = phone;}
+
+    public void setPass(String pass) {this.pass = pass;}
 
 
 }

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SellFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sell"
+        android:id="@+id/titleIncome"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerExpenses"
+        android:layout_below="@+id/titleIncome"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sellbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/purple_200"
+        android:src="@drawable/add" />
+
+
+
+
+
+<!--use this when we put frame layout-->
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView1"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="250dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginBottom="350dp"-->
+<!--        android:layout_marginEnd="76dp"-->
+<!--        android:layout_marginStart="85dp"-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.05"-->
+<!--        app:srcCompat="@drawable/ic_launcher_background" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/camera1"-->
+<!--        android:layout_width="112dp"-->
+<!--        android:layout_height="54dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginBottom="264dp"-->
+<!--        android:layout_marginEnd="148dp"-->
+<!--        android:layout_marginStart="151dp"-->
+<!--        android:layout_marginTop="285dp"-->
+<!--        android:backgroundTint="@android:color/holo_green_dark"-->
+<!--        android:text="camera"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.58" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/Enterdescription"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginBottom="175dp"-->
+<!--        android:layout_marginEnd="205dp"-->
+<!--        android:layout_marginStart="206dp"-->
+<!--        android:layout_marginTop="388dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Description"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.472"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.725" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/Enterdescription1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:layout_marginHorizontal="30dp"-->
+<!--        android:layout_above="@+id/insertImage1"-->
+<!--        android:layout_below="@+id/camera1"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:hint="Description"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:visibility="visible" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/insertImage1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginBottom="34dp"-->
+<!--        android:layout_marginEnd="127dp"-->
+<!--        android:layout_marginStart="137dp"-->
+<!--        android:layout_marginTop="521dp"-->
+<!--        android:backgroundTint="@android:color/holo_green_dark"-->
+<!--        android:text="upload image"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.911" />-->
+</RelativeLayout>

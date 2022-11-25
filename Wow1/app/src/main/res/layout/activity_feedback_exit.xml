@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".AfterSuccessfulLogin">
+    android:layout_height="match_parent"
+    tools:context=".FeedbackExit"
+    android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-
-
         <Button
-            android:id="@+id/sell"
+            android:id="@+id/feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SELL" />
+            android:text="feedback"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
-            android:id="@+id/buy"
+            android:id="@+id/exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:minWidth="48dp"
-            android:text="BUY" />
+            android:text="exit"
+            style="?android:attr/buttonBarButtonStyle" />
 
     </LinearLayout>
 
@@ -37,12 +37,10 @@
         android:orientation="vertical">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="com.example.wow1.SellFragment"
-            android:layout_width="wrap_content"
+            android:id="@+id/fragmentContainerView2"
+            android:name="com.example.wow1.FeedbackFragment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:layout="@layout/fragment_sell" />
+            tools:layout="@layout/fragment_feedback" />
     </LinearLayout>
-
 </LinearLayout>

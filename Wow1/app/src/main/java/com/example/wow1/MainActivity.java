@@ -1,6 +1,7 @@
 package com.example.wow1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,9 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //    private FirebaseAuth auth;
 //    private EditText signupEmail, signupPassword;
 //    private Button button1;
+//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/");
     DatabaseReference databaseReference;
     DataSnapshot snapshot;
 
@@ -39,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         final EditText phone=findViewById(R.id.editTextPhone2);
         final EditText password=findViewById(R.id.editTextTextPassword);
         final Button login=findViewById(R.id.button1);
-        final Button newuser=findViewById(R.id.button2);
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("getdata");
+//        final Button newuser=findViewById(R.id.button2);
 
         Button bt2=findViewById(R.id.button2);
         bt2.setOnClickListener(new View.OnClickListener() {
@@ -59,17 +64,38 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"please enter your mobile or password",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    databaseReference.orderByChild("phone").equalTo(phone.getText().toString()).addChildEventListener(new ChildEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            if(snapshot.hasChild(phonetxt)){
-                                final String getpassword=snapshot.child(phonetxt).child("password").getValue(String.class);
-
-                                if(getpassword.equals(passwordtxt)){
-                                    startActivity(new Intent(MainActivity.this,AfterSuccessfulLogin.class));
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            if(snapshot.hasChildren()){
+                                userLogin login=snapshot.getValue(userLogin.class);
+                                String pass1= login.getPass().toString();
+                                if(passwordtxt.equals(pass1))
+                                {
+                                    Intent intent = new Intent(getApplicationContext(),NewWelcomeScreen.class);
+                                    startActivity(intent);
+                                }
+                                else
+                                {
+                                    Toast.makeText(MainActivity.this,"Phone no or password is wrong",Toast.LENGTH_SHORT).show();
                                 }
                             }
+
+
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                         }
 
@@ -78,6 +104,41 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
+
+
+
+
+
+
+
+
+//                    databaseReference.child("getdata").addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                            if(snapshot.hasChild(phonetxt)){
+//                                final String getpassword=snapshot.child(phonetxt).child("pass").getValue(String.class);
+//
+//                                if(getpassword.equals(passwordtxt)){
+//                                    startActivity(new Intent(MainActivity.this,AfterSuccessfulLogin.class));
+//                                    finish();
+//                                }
+//                                else {
+//                                    Toast.makeText(MainActivity.this, "Password incorrect", Toast.LENGTH_SHORT).show();
+//                                }
+//                               }
+//                            else{
+//                                Toast.makeText(MainActivity.this,"enter correct mobile number",Toast.LENGTH_SHORT).show();
+//                            }
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    });
                 }
 
             }

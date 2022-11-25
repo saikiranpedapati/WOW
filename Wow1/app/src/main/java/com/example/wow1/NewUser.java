@@ -99,7 +99,7 @@ public class NewUser extends AppCompatActivity {
 //                }
 
                 else{
-                    System.out.println("happy");
+//                    System.out.println("happy");
                     Toast.makeText(NewUser.this,"successfully registered",Toast.LENGTH_SHORT).show();
 
 
