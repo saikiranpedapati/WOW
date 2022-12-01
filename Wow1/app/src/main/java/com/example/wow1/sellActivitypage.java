@@ -8,9 +8,11 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -36,9 +38,9 @@ public class sellActivitypage extends AppCompatActivity {
     public static final int CAMERA_PERMISSION_CODE = 101;
     public static final int IMAGE_CODE = 103;
     //    public static final int CAMERA_REQUEST_CODE = 102;
-    Uri imageUrl=null;
+    Uri imageUrl;
     ProgressDialog progressDialog;
-
+    Drawable im;
 
 
     ImageView selectedImage;
@@ -63,9 +65,10 @@ public class sellActivitypage extends AppCompatActivity {
         insert = findViewById(R.id.insertImage1);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("getdata");
+        databaseReference=firebaseDatabase.getReference().child("image");
         firebaseStorage=FirebaseStorage.getInstance();
         progressDialog =new ProgressDialog(this);
+
 
 
 
@@ -98,6 +101,7 @@ public class sellActivitypage extends AppCompatActivity {
 
 
     }
+
 
     private void askCameraPermissions() {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
@@ -139,51 +143,94 @@ public class sellActivitypage extends AppCompatActivity {
 
         if (requestCode==IMAGE_CODE && requestCode==RESULT_OK){
             imageUrl=data.getData();
+//            StorageReference reference=firebaseStorage.getReference();
+//            reference.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    Toast.makeText(sellActivitypage.this,"uploded",Toast.LENGTH_SHORT).show();
+//                }
+//            });
+
             selectedImage.setImageURI(imageUrl);
+
+            StorageReference ref = firebaseStorage.getReference().child("kk");
+            ref.putFile(data.getData()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(sellActivitypage.this, "uploaded", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            im = selectedImage.getDrawable();
         }
 
-
-        //        another code for submit button
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference reference=firebaseStorage.getReference().child("imagedata").child(System.currentTimeMillis()+"");
 
-                reference.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                ProductUpload upload = new ProductUpload();
+//                StorageReference ref = firebaseStorage.getReference().child("kk");
+//                StorageReference filepath= firebaseStorage.getReference().child("image").child(imageUrl.getLastPathSegment());
+//                filepath.putFile(data.getData()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        Toast.makeText(sellActivitypage.this, "uploaded", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                });
 
-                                upload.setSelectedImage(uri.toString());
-                                upload.setDescription(description.getText().toString());
-
-                                firebaseDatabase.getReference().child("imagedata").push().setValue(upload).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-
-                                        Toast.makeText(sellActivitypage.this,"image uploded",Toast.LENGTH_SHORT).show();
-
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(sellActivitypage.this,"error uploading",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                            }
-                        });
-
-                    }
-                });
 
             }
         });
+
+
+        //        another code for submit button
+//        insert.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                StorageReference reference=firebaseStorage.getReference();
+////
+////                StorageReference reference = FirebaseStorage.getInstance().getReference();
+//                UploadTask.TaskSnapshot putFile;
+////                imageUrl = getContentResolver().insert(data.getData());
+//                reference.putFile(imageUrl);
 //
+//                reference.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                ProductUpload upload = new ProductUpload();
+//
+//                                upload.setSelectedImage(uri.toString());
+//                                upload.setDescription(description.getText().toString());
+//
+//                                firebaseDatabase.getReference().child("imagedata").push().setValue(upload).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void unused) {
+//
+//                                        Toast.makeText(sellActivitypage.this,"image uploded",Toast.LENGTH_SHORT).show();
+//
+//                                    }
+//                                }).addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(sellActivitypage.this,"error uploading",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//
+//                            }
+//                        });
+//
+//                    }
+//                });
+//
+//            }
+//        });
+
 
 
 
@@ -193,50 +240,50 @@ public class sellActivitypage extends AppCompatActivity {
 
         ///// insert button code for uploading
 
-//        insert.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String desc=description.getText().toString();
-//
-//                if (!(desc.isEmpty() && imageUrl!=null))
-//                {
-//                    progressDialog.setTitle("uploading");
-//                    progressDialog.show();
-//
-//                    StorageReference filepath= firebaseStorage.getReference().child("image").child(imageUrl.getLastPathSegment());
-//                    filepath.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//
-//
-//                            Task<Uri> downlaodUrl=taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Uri> task) {
-//
-//                                    String t=task.getResult().toString();
-//
-//
-//
-//
-//                                    DatabaseReference newpost= databaseReference.push();
-//                                    newpost.child("Description").setValue(desc);
-//                                    newpost.child("image").setValue(task.getResult().toString());
-//                                    progressDialog.dismiss();
-//
-//
-//
-//                                }
-//                            });
-//
-//                        }
-//                    });
-//
-//                }
-//
-//            }
-//
-//        });
+        insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String desc=description.getText().toString();
+
+                if (!(desc.isEmpty() && imageUrl!=null))
+                {
+                    progressDialog.setTitle("uploading");
+                    progressDialog.show();
+
+                    StorageReference filepath= firebaseStorage.getReference().child("image").child(imageUrl.getLastPathSegment());
+                    filepath.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+
+                            Task<Uri> downlaodUrl=taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+
+                                    String t=task.getResult().toString();
+
+
+
+
+                                    DatabaseReference newpost= databaseReference.push();
+                                    newpost.child("Description").setValue(desc);
+                                    newpost.child("image").setValue(task.getResult().toString());
+                                    progressDialog.dismiss();
+
+
+
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+
+            }
+
+        });
 
         ///   checking wheather it is going into the loop
 

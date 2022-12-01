@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".SellFragment">
 
     <TextView
@@ -32,7 +33,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/purple_200"
+        android:backgroundTint="#8BC34A"
         android:src="@drawable/add" />
 
 
