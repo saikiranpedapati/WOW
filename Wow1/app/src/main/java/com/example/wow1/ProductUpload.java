@@ -1,29 +1,55 @@
 package com.example.wow1;
 
 public class ProductUpload {
-    String selectedImage,description;
+    String image, describe, pic;
 
-    public ProductUpload() {
+    public ProductUpload(String describeInfo) {
     }
 
-    public ProductUpload(String selectedImage, String description) {
-        this.selectedImage = selectedImage;
-        this.description = description;
+    public String getPic() {
+        return pic;
     }
 
-    public String getSelectedImage() {
-        return selectedImage;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
-    public void setSelectedImage(String selectedImage) {
-        this.selectedImage = selectedImage;
+    public String getImage() {
+        return image;
     }
 
-    public String getDescription() {
-        return description;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getDescribe() {
+        return describe;
     }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+
+
+//    public ProductUpload(String selectedImage, String description) {
+//        this.image = image;
+//        this.describe = describe;
+//    }
+//
+//    public String getSelectedImage() {
+//        return selectedImage;
+//    }
+//
+//    public void setSelectedImage(String selectedImage) {
+//        this.selectedImage = selectedImage;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 }

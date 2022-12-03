@@ -67,7 +67,7 @@ public class SellFragment extends Fragment {
         sellbtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getActivity(), sellActivitypage.class);
+                Intent intent = new Intent(getActivity(), SellActivitypage2.class);
                 startActivity(intent);
             }
         });

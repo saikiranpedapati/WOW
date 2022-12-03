@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 
 public class NewUser extends AppCompatActivity {
 
@@ -57,10 +61,52 @@ public class NewUser extends AppCompatActivity {
                 String phonetxt=phone.getText().toString();
                 String passwordtxt=password.getText().toString();
 
+
+
+
+                if (personnametxt.isEmpty()){
+                    personname.setError("enter a name!");
+                    personname.requestFocus();
+                    return;
+                }
+                if (emailtxt.isEmpty()){
+                    email.setError("enter a Email ID!");
+                   email.requestFocus();
+                    return;
+                }
+                if(!Patterns.EMAIL_ADDRESS.matcher(emailtxt).matches()) {
+                    email.setError("Please provide a valid Email Address!");
+                    email.requestFocus();
+                    return;
+                }
+                if (phonetxt.isEmpty()){
+                    phone.setError("enter phone no!");
+                    phone.requestFocus();
+                    return;
+                }
+                if(phonetxt.length() < 10){
+                    phone.setError("enter valid mobile no!");
+                    phone.requestFocus();
+                    return;
+                }
+
+                if (passwordtxt.isEmpty()){
+                    password.setError("Password is required!");
+                    password.requestFocus();
+                    return;
+                }
+                if(passwordtxt.length() < 8){
+                    password.setError("Min password length should be 6 characters!");
+                    password.requestFocus();
+                    return;
+                }
+
+
                 if(personnametxt.isEmpty() ||emailtxt.isEmpty() ||phonetxt.isEmpty() ||passwordtxt.isEmpty()){
 
                     Toast.makeText(NewUser.this,"enter all details",Toast.LENGTH_SHORT).show();
                 }
+
 
 
 //                else{
@@ -108,6 +154,8 @@ public class NewUser extends AppCompatActivity {
                         String phoneno=phone.getText().toString();
                         String pass=password.getText().toString();
 
+
+
                         userLogin Logincred = new userLogin(name,mail,phoneno,pass);
                         databaseReference.push().setValue(Logincred);
 
@@ -115,7 +163,12 @@ public class NewUser extends AppCompatActivity {
                 }
 
 
+
+
             }
+
+
+
         });
 
 
@@ -148,4 +201,9 @@ public class NewUser extends AppCompatActivity {
 //        databaseReference.push().setValue(Logincred);
 //
 //    }
+
+
+
+
+
 }
