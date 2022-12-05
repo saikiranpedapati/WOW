@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class SellActivitypage2 extends AppCompatActivity {
     public static final int IMAGE_PICK_CODE =1000;
 
 //    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("imagedata").update(updates);
-DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("getdata");
+DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("images");
 
     Button capturebtn;
     ImageView image;
@@ -59,11 +60,13 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
     int count =0;
     String keka;
     BottomNavigationView nave;
+    EditText description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_activitypage2);
+        description = findViewById(R.id.discription);
 
 
         image = findViewById(R.id.image_View);
@@ -80,28 +83,48 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
         // number.setText(keka);
 
 
-
 //        txt = findViewById(R.id.random);
         capturebtn = findViewById(R.id.takeaphoto);
         submit = findViewById(R.id.button);
-        describe = findViewById(R.id.discription);
+        description = findViewById(R.id.discription);
 //        issues = FirebaseDatabase.getInstance().getReference().child("issues table");
 //        issues1 = FirebaseDatabase.getInstance().getReference().child("In process");
-//        upload = findViewById(R.id.uploadaphoto);
+//        uploadde = findViewById(R.id.uploadaphoto);
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if((count ==0) || (describe.getText().toString().isEmpty())) {
+                if((count ==0) || (description.getText().toString().isEmpty())) {
                     Toast.makeText(SellActivitypage2.this, "enter all fields", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
 //
-                    String describeInfo=describe.getText().toString();
+                    String describeInfo=description.getText().toString();
                     ProductUpload imagesuploading = new ProductUpload(describeInfo);
+                    Random random = new Random();
+                    val = random.nextInt(1000000000-100000000)+100000000;
+                    StorageReference ref = FirebaseStorage.getInstance().getReference().child("img"+val+  describeInfo);
+                    ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(SellActivitypage2.this, "uploaded", Toast.LENGTH_SHORT).show();
+
+
+
+
+//                        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+//                        String describeInfo=description.getText().toString();
+//                        String picture=image.toString();
+//                        ProductUpload imagesuploading = new ProductUpload(describeInfo,pict);
+//                        databaseReference.push().setValue(imagesuploading);
+
+                        }
+                    });
+
+                    count =1;
                     databaseReference.push().setValue(imagesuploading);
 
                 }
@@ -222,36 +245,40 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
 //            }
 //        }
 //        else                     itis else if statement press back space and join the below line
+
+        String desc=description.getText().toString();
         if(requestCode==2){
             if (resultCode == RESULT_OK  ) {
                 //setting image captured to imageview
                 pic = image_uri.toString();
-//                String descriptiontxt=describe.getText().toString();
+
                 image.setImageURI(image_uri);
+                count=1;
 
                 //imager = image_uri;
 
                 ////going into firebase storage
-                Random random = new Random();
-                val = random.nextInt(1000000000-100000000)+100000000;
-                StorageReference ref = FirebaseStorage.getInstance().getReference().child("img"+val);
-                ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(SellActivitypage2.this, "uploaded", Toast.LENGTH_SHORT).show();
-
-
-
-
-//                        DatabaseReference databaseReference=FirebaseDatabase.getReference("musicians");
-//                        String describeInfo=describe.getText().toString();
-//                        ProductUpload imagesuploading = new ProductUpload(describeInfo);
-//                        databaseReference.push().setValue(imagesuploading);
-
-                    }
-                });
-
-                count =1;
+//                Random random = new Random();
+//                val = random.nextInt(1000000000-100000000)+100000000;
+//                StorageReference ref = FirebaseStorage.getInstance().getReference().child("img"+val+desc);
+//                ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        Toast.makeText(SellActivitypage2.this, "uploaded", Toast.LENGTH_SHORT).show();
+//
+//
+//
+//
+////                        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+////                        String describeInfo=description.getText().toString();
+////                        String picture=image.toString();
+////                        ProductUpload imagesuploading = new ProductUpload(describeInfo,pict);
+////                        databaseReference.push().setValue(imagesuploading);
+//
+//                    }
+//                });
+//
+//                count =1;
 
 
 

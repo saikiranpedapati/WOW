@@ -1,7 +1,7 @@
 package com.example.wow1;
 
 public class ProductUpload {
-    String image, describe, pic;
+    String image, description, pic;
 
     public ProductUpload(String describeInfo) {
     }
@@ -22,12 +22,12 @@ public class ProductUpload {
         this.image = image;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescription(String describe) {
+        this.description = describe;
     }
 
 
