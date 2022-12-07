@@ -29,9 +29,7 @@ public class NewUser extends AppCompatActivity {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("getdata");
 
-//    private FirebaseAuth auth;
-//    private EditText loginEmail,LoginPassword;
-//    private Button button3;
+
 
 
     @Override
@@ -39,9 +37,7 @@ public class NewUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
 
-//
-//        auth=FirebaseAuth.getInstance();
-//        loginEmail=findViewById(R.id.);
+
 
         personname=findViewById(R.id.editTextTextPersonName);
         email=findViewById(R.id.editTextTextEmailAddress2);
@@ -108,44 +104,7 @@ public class NewUser extends AppCompatActivity {
                 }
 
 
-
-//                else{
-//
-//                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            if(snapshot.hasChild(phonetxt)){
-//                                Toast.makeText(NewUser.this,"user already registered",Toast.LENGTH_SHORT).show();
-//                            }
-//                            else{
-//                                databaseReference.child("users").child(phonetxt).child("personname").setValue(personnametxt);
-//                                databaseReference.child("users").child(phonetxt).child("email").setValue(emailtxt);
-//                                databaseReference.child("users").child(phonetxt).child("password").setValue(passwordtxt);
-//
-//                                Toast.makeText(NewUser.this,"successfully registered",Toast.LENGTH_SHORT).show();
-//                                finish();
-//
-//
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-
-//                    databaseReference.child("users").child(phonetxt).child("personname").setValue(personnametxt);
-//                    databaseReference.child("users").child(phonetxt).child("email").setValue(emailtxt);
-//                    databaseReference.child("users").child(phonetxt).child("password").setValue(passwordtxt);
-//
-//                    Toast.makeText(NewUser.this,"successfully registered",Toast.LENGTH_SHORT).show();
-//                    finish();
-
-//                }
-
                 else{
-//                    System.out.println("happy");
                     Toast.makeText(NewUser.this,"successfully registered",Toast.LENGTH_SHORT).show();
 
 
@@ -190,20 +149,6 @@ public class NewUser extends AppCompatActivity {
 
 
     }
-//    public void user()
-//    {
-//        String name=personname.getText().toString();
-//        String mail=email.getText().toString();
-//        String phoneno=phone.getText().toString();
-//        String pass=password.getText().toString();
-//
-//        userLogin Logincred = new userLogin(name,mail,phoneno,pass);
-//        databaseReference.push().setValue(Logincred);
-//
-//    }
-
-
-
 
 
 }

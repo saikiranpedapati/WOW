@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +21,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -43,24 +52,12 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
     Button capturebtn;
     ImageView image;
     Uri image_uri;
-    Uri imager;
-    String status;
-    TextView txt;
-    TextView number;
     Button submit;
-    TextView describe;
-    String imageexists;
     String pic;
-    Button upload;
     int val;
-    int k;
-    FloatingActionButton deleteimage;
-    DatabaseReference issues;
-    DatabaseReference issues1;
     int count =0;
-    String keka;
-    BottomNavigationView nave;
     EditText description;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,28 +65,16 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
         setContentView(R.layout.activity_sell_activitypage2);
         description = findViewById(R.id.discription);
 
+        Intent intent=getIntent();
+        final String img=intent.getStringExtra("images");
+
 
         image = findViewById(R.id.image_View);
 
-
-
-
-        //Intent intent = getIntent ();
-        // Bundle extras = intent.getExtras();
-
-
-        // keka = extras.getString("keynumber");
-
-        // number.setText(keka);
-
-
-//        txt = findViewById(R.id.random);
         capturebtn = findViewById(R.id.takeaphoto);
         submit = findViewById(R.id.button);
         description = findViewById(R.id.discription);
-//        issues = FirebaseDatabase.getInstance().getReference().child("issues table");
-//        issues1 = FirebaseDatabase.getInstance().getReference().child("In process");
-//        uploadde = findViewById(R.id.uploadaphoto);
+
 
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -103,10 +88,21 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
                 else{
 //
                     String describeInfo=description.getText().toString();
-                    ProductUpload imagesuploading = new ProductUpload(describeInfo);
+                    String picinfo=pic.toString();
+
+
+//                    ProductUpload imagesuploading = new ProductUpload(describeInfo);
                     Random random = new Random();
                     val = random.nextInt(1000000000-100000000)+100000000;
+
                     StorageReference ref = FirebaseStorage.getInstance().getReference().child("img"+val+  describeInfo);
+
+
+
+
+
+
+
                     ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -115,47 +111,32 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
 
 
 
-//                        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
-//                        String describeInfo=description.getText().toString();
-//                        String picture=image.toString();
-//                        ProductUpload imagesuploading = new ProductUpload(describeInfo,pict);
-//                        databaseReference.push().setValue(imagesuploading);
+//                           DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+//                            String picture=image.toString();
+
+//                           String describeInfo=description.getText().toString();
+//
+//                           ProductUpload imagesuploading = new ProductUpload(describeInfo);
+//                           databaseReference.push().setValue(imagesuploading);
 
                         }
                     });
 
-                    count =1;
-                    databaseReference.push().setValue(imagesuploading);
+//                    String describeInfo=description.getText().toString();
 
+                    productUpload2 uploadimg = new productUpload2(describeInfo,picinfo);
+
+                    databaseReference.push().setValue(uploadimg);
+
+
+                    count =1;
+//                    databaseReference.push().setValue(imagesuploading);
+//
                 }
 
             }
         });
-//        upload.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
-//                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED|| checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
-//                        //permission not enabled so request it
-//                        String[] permission = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
-//                        //show popup to request permission
-//                        requestPermissions(permission, PERMISSION_CODE);
 //
-//                    }
-//                    else
-//                    {
-//                        //permission already granted
-//                        PickImageFromGallery();
-//                    }
-//                }
-//                else
-//                {
-//                    //system os is <marsh
-//                    PickImageFromGallery();
-//                }
-//            }
-//        });
-
         //onbuttonclick
         capturebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,17 +161,10 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
                     OpenCamera();
                 }
             }
-           /* Random random = new Random();
-            int val = random.nextInt(10000);
-                txt.setText(Integer.toString(val).concat(" is your ticket ID, please note. We will send you a mail once the issue is resolved, Thnaks for reporting"));*/
+
 
         });
     }
-//    private void PickImageFromGallery(){
-//        Intent intent = new Intent(Intent.ACTION_PICK);
-//        intent.setType("image/*");
-//        startActivityForResult(intent, 1);
-//    }
 
     private void OpenCamera() {
         ContentValues values = new ContentValues();
@@ -225,28 +199,8 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==1) {
-//            if (resultCode == RESULT_OK || resultCode == IMAGE_PICK_CODE) {
-//                //pic = image_uri.toString();
-//
-//                // image.setImageURI(image_uri);
-//                image.setImageURI(data.getData());
-//                StorageReference ref = FirebaseStorage.getInstance().getReference().child("kk");
-//                ref.putFile(data.getData()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        Toast.makeText(SellActivitypage2.this, "uploaded", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });
-//                pic = data.getData().toString();
-//                count =1;
-//
-//            }
-//        }
-//        else                     itis else if statement press back space and join the below line
 
-        String desc=description.getText().toString();
+//        String desc=description.getText().toString();
         if(requestCode==2){
             if (resultCode == RESULT_OK  ) {
                 //setting image captured to imageview
@@ -255,34 +209,6 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
                 image.setImageURI(image_uri);
                 count=1;
 
-                //imager = image_uri;
-
-                ////going into firebase storage
-//                Random random = new Random();
-//                val = random.nextInt(1000000000-100000000)+100000000;
-//                StorageReference ref = FirebaseStorage.getInstance().getReference().child("img"+val+desc);
-//                ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        Toast.makeText(SellActivitypage2.this, "uploaded", Toast.LENGTH_SHORT).show();
-//
-//
-//
-//
-////                        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
-////                        String describeInfo=description.getText().toString();
-////                        String picture=image.toString();
-////                        ProductUpload imagesuploading = new ProductUpload(describeInfo,pict);
-////                        databaseReference.push().setValue(imagesuploading);
-//
-//                    }
-//                });
-//
-//                count =1;
-
-
-
-//
             }
         }
     }

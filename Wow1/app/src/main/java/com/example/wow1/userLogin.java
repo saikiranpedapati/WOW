@@ -5,6 +5,7 @@ public class userLogin {
     String email;
     String phone;
     String pass;
+    //String Uri;
     public userLogin(){
 
     }
@@ -15,6 +16,7 @@ public class userLogin {
         this.email = email;
         this.phone = phone;
         this.pass = pass;
+      // this.Uri=Uri;
 
 
     }
@@ -34,6 +36,9 @@ public class userLogin {
     public String getPass() {
         return pass;
     }
+    /*public String getUri() {
+        return Uri;
+    }*/
 
     public void setUser(String user) {this.user = user;}
 
@@ -42,6 +47,7 @@ public class userLogin {
     public void setPhone(String phone) {this.phone = phone;}
 
     public void setPass(String pass) {this.pass = pass;}
+    /*public void setUri(String Uri) {this.Uri = Uri;}*/
 
 
 }

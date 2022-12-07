@@ -55,7 +55,7 @@ public class BuyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StorageReference fb = FirebaseStorage.getInstance().getReference().child("img");
-        
+
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
