@@ -47,7 +47,7 @@ public class SellActivitypage2 extends AppCompatActivity {
     public static final int IMAGE_PICK_CODE =1000;
 
 //    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("imagedata").update(updates);
-DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("images");
+DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("imagesdescription");
 
     Button capturebtn;
     ImageView image;
@@ -131,6 +131,7 @@ DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenc
 
                     count =1;
 //                    databaseReference.push().setValue(imagesuploading);
+//                    startActivity(new Intent(SellActivitypage2.this,BuyActivitypage2.class));
 //
                 }
 

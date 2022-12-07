@@ -33,7 +33,8 @@ public class DisplayData_Adapter extends RecyclerView.Adapter<DisplayData_Adapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         productUpload2 productUpload2=productUpload2List.get(position);
-//        holder.description.setText();
+        holder.description.setText("description"+ productUpload2.getUser());
+
 
     }
 
