@@ -5,18 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".ExitFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        android:id="@+id/titleIncome"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="20dp"/>
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
+    <Button
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="160dp"
+        android:text="LOGOUT" />
+
 
 </FrameLayout>

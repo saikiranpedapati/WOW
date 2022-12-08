@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BuyActivitypage2 extends AppCompatActivity {
@@ -38,11 +39,13 @@ private TextView imgdesc;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_activitypage2);
 
-//        imgdesc = findViewById(R.id.displaydata);
 
-//        firebaseDatabase=FirebaseDatabase.getInstance();
-//        databaseReference.getRef().child("imagesdescription");
-//        firebaseStorage=FirebaseStorage.getInstance();
+
+//        firebaseDatabase=FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").getDatabase();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://wow1-faccd-default-rtdb.firebaseio.com/").child("imagesdescription");
+
+        databaseReference.getRef().child("imagesdescription");
+        firebaseStorage=FirebaseStorage.getInstance();
 //        recyclerView=findViewById(R.id.displaydata);
 //        recyclerView.setHasFixedSize(true);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -50,27 +53,28 @@ private TextView imgdesc;
 //
 //        productUpList=new ArrayList<productUpload2>();
 //        displayData_adapter=new DisplayData_Adapter(BuyActivitypage2.this,productUpList);
+        imgdesc = findViewById(R.id.tvd);
+
+
+    RecyclerView rv = findViewById(R.id.displaydata);
 
 
 
 
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.child("imagesdescription").getValue(String.class);
+                imgdesc.setText(value);
 
+            }
 
-
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String value = snapshot.child("imagesdescription").getValue(String.class);
-//                imgdesc.setText(value);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(BuyActivitypage2.this,"failed to get data",Toast.LENGTH_SHORT).show();
-//            }
-//        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BuyActivitypage2.this,"failed to get data",Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 //        databaseReference.addChildEventListener(new ChildEventListener() {

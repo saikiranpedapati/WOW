@@ -13,6 +13,7 @@ public class NewWelcomeScreen extends AppCompatActivity {
     BottomNavigationView nav;
     SellFragment sellFragment = new SellFragment();
     BuyFragment buyFragment = new BuyFragment();
+    ExitFragment exitFragment=new ExitFragment();
 
 
     @Override
@@ -34,6 +35,9 @@ public class NewWelcomeScreen extends AppCompatActivity {
                         return true;
                     case R.id.buy:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, buyFragment).commit();
+                        return true;
+                    case R.id.exit:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, exitFragment).commit();
                         return true;
 
                 }

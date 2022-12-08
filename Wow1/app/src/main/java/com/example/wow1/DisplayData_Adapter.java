@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class DisplayData_Adapter extends RecyclerView.Adapter<DisplayData_Adapter.ViewHolder> {
 
     Context context;
-    List<productUpload2> productUpload2List;
+    List<String> productUpload2List;
 
-    public DisplayData_Adapter(Context context, List<productUpload2> productUpload2List) {
+    public DisplayData_Adapter(Context context, List<String> productUpload2List) {
         this.context = context;
         this.productUpload2List = productUpload2List;
     }
@@ -29,11 +29,14 @@ public class DisplayData_Adapter extends RecyclerView.Adapter<DisplayData_Adapte
         return new ViewHolder(v);
     }
 
+    public void setProductUpload2List(List<String> pl){
+        this.productUpload2List=pl;
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        productUpload2 productUpload2=productUpload2List.get(position);
-        holder.description.setText("description"+ productUpload2.getUser());
+        String productUpload2=productUpload2List.get(position);
+        holder.description.setText( "description");
 
 
     }
