@@ -9,6 +9,10 @@
         android:id="@+id/buy"
         android:title="BUY"/>
 
+<!--    <item-->
+<!--        android:id="@+id/maps"-->
+<!--        android:title="MAPS"/>-->
+
     <item
         android:id="@+id/exit"
         android:title="EXIT"/>

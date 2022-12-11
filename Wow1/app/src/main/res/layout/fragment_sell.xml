@@ -17,11 +17,11 @@
         android:gravity="center"
         android:layout_marginTop="20dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerExpenses"
-        android:layout_below="@+id/titleIncome"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/recyclerExpenses"-->
+<!--        android:layout_below="@+id/titleIncome"/>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/sellbutton"
@@ -29,18 +29,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="284dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginStart="177dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#8BC34A"
         android:src="@drawable/add" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/titleIncome"
+        android:layout_marginBottom="410dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="123dp"
+        android:text="Click botton to add new product "
+        android:textColor="#0E0C0C"
+        android:textSize="28dp" />
 
 
-
-
-<!--use this when we put frame layout-->
+    <!--use this when we put frame layout-->
 <!--    <ImageView-->
 <!--        android:id="@+id/imageView1"-->
 <!--        android:layout_width="250dp"-->

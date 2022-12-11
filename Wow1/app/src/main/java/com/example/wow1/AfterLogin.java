@@ -1,17 +1,11 @@
 package com.example.wow1;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TableLayout;
-
-import com.google.android.material.tabs.TabLayout;
 
 public class AfterLogin extends AppCompatActivity {
 

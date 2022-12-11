@@ -9,10 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -80,7 +77,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
     buybtn.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v){
-            Intent intent = new Intent(getActivity(), BuyActivitypage2.class);
+            Intent intent = new Intent(getActivity(), buyActivitypage.class);
             startActivity(intent);
         }
     });

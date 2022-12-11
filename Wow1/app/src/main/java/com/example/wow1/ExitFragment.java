@@ -1,5 +1,7 @@
 package com.example.wow1;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -16,6 +21,8 @@ import android.view.ViewGroup;
 
 
 public class ExitFragment extends Fragment {
+
+    Button logoutbtn;
 
 
 //
@@ -65,4 +72,52 @@ public class ExitFragment extends Fragment {
 //        // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_exit, container, false);
 //    }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        View v= inflater.inflate(R.layout.fragment_exit, container, false);
+//        logoutbtn = v.findViewById(R.id.logout);
+//        logoutbtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent intent = new Intent(getActivity(), MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        return v;
+//
+//    }
+
+
+
+
+    Activity context;
+
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        context = getActivity();
+        return inflater.inflate(R.layout.fragment_exit, container, false);
+    }
+    public void onStart(){
+        super.onStart();
+        Button btn=(Button) context.findViewById(R.id.logout);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent= new Intent(context, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+
 }

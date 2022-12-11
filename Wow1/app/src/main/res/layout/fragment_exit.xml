@@ -16,6 +16,13 @@
         android:gravity="center"
         android:layout_marginTop="20dp"/>
 
+<!--    <fragment-->
+<!--        android:id="@+id/google_map"-->
+<!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="90dp" />-->
+
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"

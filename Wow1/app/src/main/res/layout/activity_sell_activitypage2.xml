@@ -27,7 +27,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginHorizontal="20dp"
         android:backgroundTint="@color/white"
-        android:hint="please enter contact and product description"
+        android:hint="Please enter contact and product description"
         android:inputType="textPersonName"
         android:textColor="#171515"
         android:textColorHint="#596C62"
