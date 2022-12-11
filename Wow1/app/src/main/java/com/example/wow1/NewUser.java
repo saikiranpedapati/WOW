@@ -83,7 +83,7 @@ public class NewUser extends AppCompatActivity {
                     password.requestFocus();
                     return;
                 }
-                if(passwordtxt.length() < 8){
+                if(passwordtxt.length() < 6){
                     password.setError("Min password length should be 6 characters!");
                     password.requestFocus();
                     return;
@@ -105,7 +105,8 @@ public class NewUser extends AppCompatActivity {
                         String phoneno=phone.getText().toString();
                         String pass=password.getText().toString();
 
-
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
 
                         userLogin Logincred = new userLogin(name,mail,phoneno,pass);
                         databaseReference.child(name).setValue(Logincred);

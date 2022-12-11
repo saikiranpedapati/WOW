@@ -76,20 +76,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AfterLogin"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".AfterSuccessfulLogin"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".NewUser"
             android:exported="false">
             <meta-data
