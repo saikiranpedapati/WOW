@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         User user=list.get(position);
         holder.Descriptioninfo.setText(user.getUser());
-//        holder.Descriptioninfo.setText(user.getPic());
+        holder.Pictureinfo.setText(user.getPic());
 
     }
 
@@ -55,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
 
             Descriptioninfo=itemView.findViewById(R.id.descriptiondisplaychey);
-//            Pictureinfo=itemView.findViewById(R.id.pictureinfodisplaychey);
+            Pictureinfo=itemView.findViewById(R.id.pictureinfodisplaychey);
 
 
         }
